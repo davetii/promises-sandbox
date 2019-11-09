@@ -32,3 +32,19 @@ describe('test-square-root-with-done-callback', function() {
         expect(sq.sq('w')).to.be.rejected.notify(done);
     });
 });
+
+describe('test-square-root-with-then', function() {
+    it('square root should return expected', function() {
+        return sq.sq(2).then( result => {
+            expect(result).to.be.above(2);
+            expect(result).to.be.equal(4);
+        })
+    });
+
+    it('square root should reject as  expected', function() {
+        return sq.sq('string').catch( error => {
+            expect(error).to.not.equal(null);
+            expect(error.message).to.be.equal('Argument is not a number');
+        })
+    });
+});
